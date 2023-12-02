@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="index.js" defer></script>
+  <link rel="stylesheet" href="index.css">
+  <title>E-Commerce</title>
+</head>
+<body>
+  <form id='product-form' action="/addProduct" method="post">
+    <label for="product-name">Product Name:</label>
+    <input type="text" id="product-name" name="product-name" required>
+
+    <label for="product-price">Product Price:</label>
+    <input type="number" name="product-price" id="product-price" required> 
+
+    <button type="submit">Add Product</button>
+  </form>
+</body>
+</html>
