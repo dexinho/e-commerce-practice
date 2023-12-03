@@ -1,21 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="index.js" defer></script>
+  <script defer src="index.js"></script>
   <link rel="stylesheet" href="index.css">
   <title>E-Commerce</title>
 </head>
+
 <body>
-  <form id='product-form' action="/addProduct" method="post">
-    <label for="product-name">Product Name:</label>
-    <input type="text" id="product-name" name="product-name" required>
+  <div id="products-container">
+    <div id="e-commerce-title">E-Commerce</div>
+    <div id="product-display-div">
+      <div class="product-slot">
+        <div class="product-details product-name-div">Bicycle</div>
+        <div class="product-details product-price-div">250$</div>
+        <div class="product-details product-image-div"><img src="assets/images/black_bicycle.jpg" alt="black-bicycle"></div>
+        <div class="product-details product-description-div">Nice black bicycle</div>
+      </div>
+      <div class="product-slot">
+        <div class="product-details product-name-div">Backpack</div>
+        <div class="product-details product-price-div">150$</div>
+        <div class="product-details product-image-div"><img src="assets/images/gray_backpack.jpg" alt="" srcset=""></div>
+        <div class="product-details product-description-div">Amazing gray backpack</div>
+      </div>
+      <div class="product-slot">
+        <div class="product-details product-name-div">Headphones</div>
+        <div class="product-details product-price-div">50$</div>
+        <div class="product-details product-image-div"><img src="assets/images/black_headphones.jpg" alt="" srcset=""></div>
+        <div class="product-details product-description-div">Wonderful black backpack</div>
+      </div>
+    </div>
+    <div id="add-new-product-div">
+      <button id="add-new-product-btn">ADD PRODUCT</button>
+    </div>
+  </div>
+  <div id='form-container'>
+    <form id='product-form' action="/addProduct" method="post">
+      <h1>Product Details</h1>
+      <div class="form-inputs-div">
+        <label for="product-name-input">Name:</label>
+        <input type="text" id="product-name-input" name="product-name-input" placeholder="fishing rod" required>
+      </div>
 
-    <label for="product-price">Product Price:</label>
-    <input type="number" name="product-price" id="product-price" required> 
+      <div class="form-inputs-div">
+        <label for="product-price-input">Price ($):</label>
+        <input type="number" name="product-price-input" id="product-price-input" placeholder="100" required>
+      </div>
 
-    <button type="submit">Add Product</button>
-  </form>
+      <div class="form-inputs-div">
+        <label for="product-description-input">Description:</label>
+        <input type="text" id="product-description-input" name="product-description-input"
+          placeholder="Very nice product" name="product-image">
+      </div>
+
+      <div class="form-inputs-div">
+        <label for="product-image">Image:</label>
+        <button id="upload-image-btn">UPLOAD</button>
+        <input type="file" id="product-image-input" name="product-image" required>
+      </div>
+
+      <button id='add-product-btn' type="submit">Add Product</button>
+    </form>
+  </div>
+
 </body>
+
 </html>
