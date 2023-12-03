@@ -84,11 +84,13 @@ h1 {
 }
 
 .product-slot {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr;
   border: 2px solid black;
-  gap: 1.5rem;
+  gap: .5rem;
   width: 500px;
+  padding: 1rem;
 }
 
 #e-commerce-title {
@@ -99,8 +101,9 @@ h1 {
 }
 
 .product-details {
-  width: 100px;
-  background-color: rgb(221, 218, 218);
+  width: 100%;
+  font-size: 2rem;
+  text-align: center;
 }
 
 .product-image-div {
@@ -126,6 +129,20 @@ h1 {
   justify-content: center;
 }
 
-#add-new-product-btn {
+.fa-trash-can {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: scale 0.1s ease-in;
+}
 
+.fa-trash-can:hover {
+  scale: 1.1;
+  color: darkgoldenrod;
+}
+
+.fa-trash-can:active {
+  scale: 0.9;
 }
