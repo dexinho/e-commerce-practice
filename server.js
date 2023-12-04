@@ -47,7 +47,9 @@ const server = http.createServer(async (req, res) => {
       const i = products.findIndex((product) => product.id === productID);
       products.splice(i, 1);
 
-      fsp.writeFile("./products.json", JSON.stringify(products), "utf-8");
+      await fsp.writeFile("./products.json", JSON.stringify(products), "utf-8");
+
+      removeImages();
 
       res.writeHead(200, { "Content-Type": "application/json" });
       res.end(JSON.stringify(products));
@@ -112,7 +114,7 @@ const server = http.createServer(async (req, res) => {
         await fsp.rename(tempPath, uploadPath);
 
         newProduct.imageSrc = `/uploads/${filename}`;
-        newProduct.imageName = filename
+        newProduct.imageName = filename;
       }
 
       try {
@@ -129,12 +131,7 @@ const server = http.createServer(async (req, res) => {
           "utf-8"
         );
 
-        const images = await fsp.readdir("./uploads", "utf-8");
-        images.forEach((image) => {
-          if (products.some((product) => product.imageName === image))
-            return;
-          else fsp.unlink(`./uploads/${image}`);
-        });
+        removeImages();
 
         res.writeHead(302, { Location: "/" });
         res.end();
@@ -163,6 +160,16 @@ const server = http.createServer(async (req, res) => {
     res.end(data, "utf-8");
   }
 });
+
+const removeImages = async () => {
+  const data = await fsp.readFile("./products.json", "utf-8");
+  const products = JSON.parse(data);
+  const images = await fsp.readdir("./uploads", "utf-8");
+  images.forEach((image) => {
+    if (products.some((product) => product.imageName === image)) return;
+    else fsp.unlink(`./uploads/${image}`);
+  });
+};
 
 server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
