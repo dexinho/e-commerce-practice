@@ -61,24 +61,23 @@
       <h1>Product Details</h1>
       <div class="form-inputs-div">
         <label for="product-name-input">Name:</label>
-        <input type="text" id="product-name-input" name="product-name-input" placeholder="fishing rod">
+        <input type="text" id="product-name-input" name="product-name-input" placeholder="fishing rod" required>
       </div>
 
       <div class="form-inputs-div">
         <label for="product-price-input">Price ($):</label>
-        <input type="number" name="product-price-input" id="product-price-input" placeholder="100">
+        <input type="number" name="product-price-input" id="product-price-input" placeholder="100" required>
       </div>
 
       <div class="form-inputs-div">
         <label for="product-description-input">Description:</label>
         <input type="text" id="product-description-input" name="product-description-input"
-          placeholder="Very nice product" name="product-description-input">
+          placeholder="Very nice product" name="product-description-input" required>
       </div>
 
       <div class="form-inputs-div">
         <label for="product-image-input">Image:</label>
-        <input type="button" id="upload-image-btn" value="UPLOAD">
-        <input type="file" id="product-image-input" name="product-image-input">
+        <input type="file" id="product-image-input" name="product-image-input" required>
       </div>
 
       <button id='add-product-btn' type="submit">Add Product</button>

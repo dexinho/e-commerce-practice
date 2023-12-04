@@ -2,7 +2,6 @@ const http = require("http");
 const fsp = require("fs").promises;
 const path = require("path");
 const { parse } = require("querystring");
-const querystring = require("querystring");
 const multer = require("multer");
 
 const hostname = "127.0.0.1";
@@ -10,7 +9,7 @@ const port = 3000;
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads/');
+    cb(null, "uploads/");
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);
@@ -100,52 +99,50 @@ const server = http.createServer(async (req, res) => {
         return;
       }
 
-      let body = "";
+      const newProduct = {
+        name: req.body["product-name-input"],
+        price: req.body["product-price-input"],
+        description: req.body["product-description-input"],
+      };
 
-      req.on("data", (chunk) => {
-        body += chunk;
-      });
+      if (req.file) {
+        const { path: tempPath, filename } = req.file;
+        const uploadPath = path.join(__dirname, "uploads", filename);
 
-      req.on("end", async () => {
-        const formData = parse(body);
+        await fsp.rename(tempPath, uploadPath);
 
-        const newProduct = {
-          name: formData["product-name-input"],
-          price: formData["product-price-input"],
-          description: formData["product-description-input"],
-        };
+        newProduct.imageSrc = `/uploads/${filename}`;
+        newProduct.imageName = filename
+      }
 
-        if (req.file) {
-          const { path: tempPath, filename } = req.file;
-          const uploadPath = path.join(__dirname, "uploads", filename);
+      try {
+        const data = await fsp.readFile("./products.json", "utf-8");
+        const products = JSON.parse(data);
 
-          await fsp.rename(tempPath, uploadPath);
+        newProduct.id = Date.now();
 
-          newProduct.image = `/uploads/${filename}`;
-        }
+        products.unshift(newProduct);
 
-        try {
-          const data = await fsp.readFile("./products.json", "utf-8");
-          const products = JSON.parse(data);
+        await fsp.writeFile(
+          "./products.json",
+          JSON.stringify(products, null, 2),
+          "utf-8"
+        );
 
-          newProduct.id = Date.now();
+        const images = await fsp.readdir("./uploads", "utf-8");
+        images.forEach((image) => {
+          if (products.some((product) => product.imageName === image))
+            return;
+          else fsp.unlink(`./uploads/${image}`);
+        });
 
-          products.push(newProduct);
-
-          await fsp.writeFile(
-            "./products.json",
-            JSON.stringify(products, null, 2),
-            "utf-8"
-          );
-
-          res.writeHead(302, { Location: "/" });
-          res.end();
-        } catch (error) {
-          console.error("Error updating products file:", error.message);
-          res.writeHead(500, { "Content-Type": "text/plain" });
-          res.end("Internal Server Error");
-        }
-      });
+        res.writeHead(302, { Location: "/" });
+        res.end();
+      } catch (error) {
+        console.error("Error updating products file:", error.message);
+        res.writeHead(500, { "Content-Type": "text/plain" });
+        res.end("Internal Server Error");
+      }
     });
   } else if (req.method === "GET" && req.url === "/getProducts") {
     try {

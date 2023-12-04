@@ -4,20 +4,23 @@
     "name": "Bicycle",
     "price": 250,
     "description": "Nice black bicycle",
-    "image": "./assets/images/black_bicycle.jpg"
+    "imageSrc": "./assets/images/black_bicycle.jpg",
+    "imageName": "black_bicycle.jpg"
   },
   {
     "id": 1002,
     "name": "Headphones",
     "price": 50,
     "description": "Wonderful black headphones",
-    "image": "./assets/images/black_headphones.jpg"
+    "imageSrc": "./assets/images/black_headphones.jpg",
+    "imageName": "black_bicycle.jpg"
   },
   {
     "id": 1001,
     "name": "Backpack",
     "price": 150,
     "description": "Amazing gray backpack",
-    "image": "./assets/images/gray_backpack.jpg"
+    "imageSrc": "./assets/images/gray_backpack.jpg",
+    "imageName": "black_bicycle.jpg"
   }
 ]

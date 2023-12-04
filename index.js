@@ -28,6 +28,8 @@ productForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const formData = new FormData(e.target);
 
+  console.log(formData)
+
   try {
     const response = await fetch("/addProduct", {
       method: "POST",
@@ -37,6 +39,8 @@ productForm.addEventListener("submit", async (e) => {
     productsContainer.style.display = "flex";
     formContainer.style.display = "none";
 
+    getProducts()
+
     if (response.ok) {
       console.log("Product added!");
     } else {
@@ -45,19 +49,6 @@ productForm.addEventListener("submit", async (e) => {
   } catch (err) {
     console.log(err);
   }
-});
-
-uploadImageBtn.addEventListener("click", () => {
-  productImageInput.click();
-
-  productImageInput.onchange = (e) => {
-    const selectedFile = e.target.files[0];
-    if (selectedFile) {
-      console.log("Selected file:", selectedFile);
-    } else {
-      console.log("No file selected");
-    }
-  };
 });
 
 const removeProduct = async (id) => {
@@ -179,7 +170,7 @@ const displayProducts = (products) => {
     productNameDiv.textContent = product.name;
     productPriceDiv.textContent = product.price + "$";
     productDescriptionDiv.textContent = product.description;
-    productImage.src = product.image;
+    productImage.src = product.imageSrc;
 
     productSlot.className = "product-slot";
     removeItem.className = "remove-item";
