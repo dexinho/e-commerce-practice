@@ -8,6 +8,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100vh;
 }
 
 #form-container {
@@ -56,10 +59,6 @@ label {
   margin: auto;
 }
 
-#upload-image-btn {
-  width: 100px;
-}
-
 h1 {
   text-align: center;
 }
@@ -71,6 +70,7 @@ h1 {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  padding: 1rem;
 }
 
 #products-container {
@@ -88,9 +88,10 @@ h1 {
   display: grid;
   grid-template-columns: 1fr;
   border: 2px solid black;
-  gap: .5rem;
-  width: 500px;
+  gap: 1rem;
+  width: 640px;
   padding: 1rem;
+  border-radius: 1rem;
 }
 
 #e-commerce-title {
@@ -103,7 +104,7 @@ h1 {
 .product-details {
   width: 100%;
   font-size: 2rem;
-  text-align: center;
+  text-align: left;
 }
 
 .product-image-div {
@@ -111,6 +112,11 @@ h1 {
   width: 100%;
   padding-top: 75%;
   overflow: hidden;
+  transition: scale 0.2s ease-in;
+}
+
+.product-image-div:hover {
+  scale: 1.2;
 }
 
 .product-image-div img {
@@ -131,8 +137,8 @@ h1 {
 
 .fa-trash-can {
   position: absolute;
-  right: 5px;
-  top: 5px;
+  right: 10px;
+  top: 10px;
   font-size: 1.5rem;
   cursor: pointer;
   transition: scale 0.1s ease-in;
@@ -145,4 +151,69 @@ h1 {
 
 .fa-trash-can:active {
   scale: 0.9;
+}
+
+#sort-and-add-div {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#sort-by-select,
+#add-new-product-btn {
+  padding: 0.2rem;
+  height: 2rem;
+  font-size: 1.2rem;
+}
+
+#search-bar-div {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#search-bar-input {
+  padding: 1rem;
+  height: 2rem;
+  font-size: 1.2rem;
+  width: 100%;
+  border-radius: 2rem;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+#delete-confirmation-dialog {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1rem;
+}
+
+#delete-confirmation-dialog>div {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+#delete-confirmation-dialog button {
+  height: 3rem;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  width: 100px;
+}
+
+#upload-image-btn {
+  width: 100px;
+  background-color: blueviolet;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  color: whitesmoke;
 }

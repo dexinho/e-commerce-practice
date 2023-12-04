@@ -13,8 +13,22 @@
 </head>
 
 <body>
+  <dialog id="delete-confirmation-dialog">
+    <div>ARE YOU SURE?</div>
+    <div><button class='delete-confirmation-btns'>YES</button><button class='delete-confirmation-btns'>NO</button></div>
+  </dialog>
   <!-- <div id="products-container">
     <div id="e-commerce-title">E-Commerce</div>
+    <div id='sort-and-add-div'>
+      <select id='sort-by-select'>
+        <option></option>
+        <option></option>
+      </select>
+      <button id="add-new-product-btn">ADD PRODUCT</button>
+    </div>
+    <div id='search-bar-div'>
+      <input type='text' id='search-bar-input'>
+    </div>
     <div id="product-display-div">
       <div class="product-slot">
         <div class="remove-item"><i class="fa-solid fa-trash-can"></i></div>
@@ -41,33 +55,30 @@
         <div class="product-details product-description-div">Wonderful black headphones</div>
       </div>
     </div>
-    <div id="add-new-product-div">
-      <button id="add-new-product-btn">ADD PRODUCT</button>
-    </div>
   </div> -->
   <div id='form-container'>
     <form id='product-form' action="/addProduct" method="post">
       <h1>Product Details</h1>
       <div class="form-inputs-div">
         <label for="product-name-input">Name:</label>
-        <input type="text" id="product-name-input" name="product-name-input" placeholder="fishing rod" required>
+        <input type="text" id="product-name-input" name="product-name-input" placeholder="fishing rod">
       </div>
 
       <div class="form-inputs-div">
         <label for="product-price-input">Price ($):</label>
-        <input type="number" name="product-price-input" id="product-price-input" placeholder="100" required>
+        <input type="number" name="product-price-input" id="product-price-input" placeholder="100">
       </div>
 
       <div class="form-inputs-div">
         <label for="product-description-input">Description:</label>
         <input type="text" id="product-description-input" name="product-description-input"
-          placeholder="Very nice product" name="product-image">
+          placeholder="Very nice product" name="product-description-input">
       </div>
 
       <div class="form-inputs-div">
-        <label for="product-image">Image:</label>
-        <button id="upload-image-btn">UPLOAD</button>
-        <input type="file" id="product-image-input" name="product-image" required>
+        <label for="product-image-input">Image:</label>
+        <input type="button" id="upload-image-btn" value="UPLOAD">
+        <input type="file" id="product-image-input" name="product-image-input">
       </div>
 
       <button id='add-product-btn' type="submit">Add Product</button>
